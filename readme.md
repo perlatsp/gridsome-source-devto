@@ -14,7 +14,8 @@ npm install @perlatsp/gridsome-source-devto
 ```
 
 ## Usage
-Add the plugin config inside `gridsome.config.js` plugins array.
+- Get an API Key from https://dev.to/settings/account
+- Add the plugin config inside `gridsome.config.js` plugins array.
 
 <details open><summary><code>gridsome.config.js</code></summary>
 
