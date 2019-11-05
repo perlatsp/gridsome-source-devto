@@ -4,11 +4,11 @@
 API might change before v1 is released.
 
 ## Install
- 
+
  ```bash
  yarn add @perlatsp/gridsome-source-devto
  ```
-or 
+or
 ```bash
 npm install @perlatsp/gridsome-source-devto
 ```
@@ -41,19 +41,16 @@ module.exports = {
 ## Loop Query
 Inside  `<page-query>` add the following query to get all articles from http://dev.to
 
-
-
-
 <details open>
 <summary> <code>./src/Pages/Index.vue </code></summary>
 
 ```html
 <template>
-    <Layout>
-        <div v-for="{ node } in $page.allArticle.edges" :key="node.id">
-            <g-link :to="node.path" class="single-post-link"> {{node.title}}</g-link>
-        </div> 
-    </Layout>
+  <Layout>
+    <div v-for="{ node } in $page.allArticle.edges" :key="node.id">
+      <g-link :to="node.path" class="single-post-link"> {{node.title}}</g-link>
+    </div>
+  </Layout>
 </template>
 
 <page-query>
@@ -63,11 +60,11 @@ Inside  `<page-query>` add the following query to get all articles from http://d
         node {
         id
         title
-        published_at
+        published_timestamp
         description
         tag_list
         canonical_url
-        cover_image
+        social_image
         }
       }
     }
@@ -81,10 +78,9 @@ Inside  `<page-query>` add the following query to get all articles from http://d
     }
   }
 </script>
-<style lang="scss" scoped>
-   
-</style>
 
+<style lang="scss" scoped>
+</style>
 ```
 
 </details>
@@ -92,7 +88,7 @@ Inside  `<page-query>` add the following query to get all articles from http://d
 ## Single Article
 
 Normally, you need to create a `[typeName].vue` inside `./src/templates` of your gridsome project.
-and then add the query for the post details. 
+and then add the query for the post details.
 
  <details open>
  <summary><code>./src/templates/Article.vue</code></summary>
@@ -106,15 +102,15 @@ and then add the query for the post details.
 
 <page-query>
 query Post($path: String!) {
-    article(path: $path) {
-       id
-        title
-        published_at
-        description
-        tag_list
-        canonical_url
-        cover_image
-    }
+  article(path: $path) {
+      id
+      title
+      published_timestamp
+      description
+      tag_list
+      canonical_url
+      social_image
+  }
 }
 </page-query>
 
@@ -124,9 +120,9 @@ query Post($path: String!) {
     data(){
       return {
         headings:NodeList
-      } 
+      }
     },
-    metaInfo() { 
+    metaInfo() {
       return {
         title: this.$page.article.title
       }
@@ -135,20 +131,15 @@ query Post($path: String!) {
 </script>
 
 <style lang="scss" scoped>
-  
-
 </style>
 ```
 
  </details>
 
-
 ## TODO
 - [x] Get posts
 - [ ] Create pagination
 - [ ] Refactor
-- [ ] ADD NEW FEATURE HERE 
-
+- [ ] ADD NEW FEATURE HERE
 
 Feel free to use this plugin.
-
